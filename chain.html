@@ -65,8 +65,6 @@
 </head>
  
 <body>
- 
-    <!-- Header Section -->
     <header>
         <div class="head1">
               Orange Chainsaw Chain Tool
@@ -75,8 +73,6 @@
               A tool to find which chain you need for your chainsaw and bar setup
           </div>
     </header>
- 
-    <!-- Menu Navigation Bar -->
     <nav class="menu">
         <a href="#home">HOME</a>
         <a href="#contact">CONTACT</a>
@@ -87,17 +83,11 @@
             <a href="#login">LOGIN</a>
         </div>
     </nav>
- 
-    <!-- Body section -->
     <main class="body_sec">
         <section id="Content">
             <h3>Choose-a-Chain Tool</h3>
         </section>
   
-
-
-
-
 	<label for="pitch">Select a chain pitch:</label>
 	<select name="pitch" id="pitch">
   		<option value="pitch" selected disabled>"Pitch"
@@ -111,7 +101,7 @@
 
 
 	<label for="gauge">Select a chain gauge:</label>
-	<select name="guage" id="gauge">
+	<select name="gauge" id="gauge">
   		<option value="gauge" selected disabled>"Gauge"
   		<option value="1">.043" (1)</option>
   		<option value="3">.050" (3)</option>
@@ -124,7 +114,7 @@
 
 	<label for="links">Select link count:</label>
 	<select name="links" id="links">
-  		<option value="guage" selected disabled>"Link #"
+  		<option value="links" selected disabled>"Link #"
   		<option value="28">28</option>
   		<option value="44">44</option>
   		<option value="50">50</option>
@@ -168,17 +158,19 @@
   		<option value="G"> Reduced Kickback (Green)</option>
   		<option value="Y"> Standard (Yellow)</option>
 	
-	<input type="submit" <?php
-// Read the CSV file into an array
-$rows = array_map('str_getcsv', file('desktop/chains.csv'));
+	<input type="submit" >
+	       
+<div class="head1">	       
+<?php
 
-// Get the user's selections from the form
+		
+$rows = array_map('str_getcsv', file('chains.csv'));
+
 $pitch = $_POST['pitch'];
 $gauge = $_POST['gauge'];
 $links = $_POST['links'];
-$color = $_POST['kb'];
-
-// Search the array for matching rows
+$kb = $_POST['kb'];
+		
 $matches = array();
 foreach ($rows as $row) {
     if ($row[0] == $pitch && $row[1] == $gauge && $row[2] == $links && $row[3] == $kb) {
@@ -186,13 +178,12 @@ foreach ($rows as $row) {
     }
 }
 
-// Display the matching rows on the web page
 foreach ($matches as $match) {
     echo "<p>" . $match[6] . " - " . $match[8] . "</p>";
 }
 ?>
-</div>
+		
 >
-
+</div>
 
 </main>
