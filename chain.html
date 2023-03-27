@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Layout</title>
+    <style>
+        .head1 {
+            font-size: 40px;
+            color: #ff8133;
+            font-weight: bold;
+        }
+ 
+        .head2 {
+            font-size: 17px;
+            margin-left: 10px;
+            margin-bottom: 15px;
+        }
+ 
+        body {
+            margin: 0 auto;
+            background-position: center;
+            background-size: contain;
+        }
+ 
+        .menu {
+            position: sticky;
+            top: 0;
+            background-color: #ff8133;
+            padding: 10px 0px 10px 0px;
+            color: white;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+ 
+        .menu a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+ 
+        .menu-log {
+            right: auto;
+            float: right;
+        }
+ 
+        footer {
+            width: 100%;
+            bottom: 0px;
+            background-color: #000;
+            color: #fff;
+            position: absolute;
+            padding-top: 20px;
+            padding-bottom: 50px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+        }
+ 
+        .body_sec {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+ 
+<body>
+ 
+    <!-- Header Section -->
+    <header>
+        <div class="head1">
+              Orange Chainsaw Chain Tool
+          </div>
+        <div class="head2">
+              A tool to find which chain you need for your chainsaw and bar setup
+          </div>
+    </header>
+ 
+    <!-- Menu Navigation Bar -->
+    <nav class="menu">
+        <a href="#home">HOME</a>
+        <a href="#contact">CONTACT</a>
+        <a href="#safety">
+              SAFETY
+          </a>
+        <div class="menu-log">
+            <a href="#login">LOGIN</a>
+        </div>
+    </nav>
+ 
+    <!-- Body section -->
+    <main class="body_sec">
+        <section id="Content">
+            <h3>Choose-a-Chain Tool</h3>
+        </section>
+  
+
+
+
+
+	<label for="pitch">Select a chain pitch:</label>
+	<select name="pitch" id="pitch">
+  		<option value="pitch" selected disabled>"Pitch"
+  		<option value="1">1/4" (1)</option>
+  		<option value="2">.325" (2)</option>
+  		<option value="3">3/8" (3)</option>
+  		<option value="4">.404"(4)</option>
+  		<option value="6">3/8" PICCO (6)</option>
+  		<option value="7">.043" PICCO (7)</option>
+	</select>
+
+
+	<label for="gauge">Select a chain gauge:</label>
+	<select name="guage" id="gauge">
+  		<option value="gauge" selected disabled>"Gauge"
+  		<option value="1">.043" (1)</option>
+  		<option value="3">.050" (3)</option>
+  		<option value="5">.058" (5)</option>
+  		<option value="6">.063" (6)</option>
+		<option value="0">.080" (0)</option>
+	</select>
+
+
+
+	<label for="links">Select link count:</label>
+	<select name="links" id="links">
+  		<option value="guage" selected disabled>"Link #"
+  		<option value="28">28</option>
+  		<option value="44">44</option>
+  		<option value="50">50</option>
+  		<option value="55">55</option>
+  		<option value="56">56</option>
+  		<option value="60">60</option>
+  		<option value="64">64</option>
+  		<option value="66">66</option>
+  		<option value="67">67</option>
+  		<option value="68">68</option>
+  		<option value="72">72</option>
+  		<option value="74">74</option>
+  		<option value="75">75</option>
+  		<option value="77">77</option>
+  		<option value="80">80</option>
+  		<option value="81">81</option>
+  		<option value="82">82</option>
+  		<option value="84">84</option>
+  		<option value="88">88</option>
+  		<option value="91">91</option>
+  		<option value="92">92</option>
+  		<option value="95">95</option>
+  		<option value="98">98</option>
+  		<option value="100">100</option>
+  		<option value="104">104</option>
+  		<option value="105">105</option>
+  		<option value="108">108</option>
+  		<option value="114">114</option>
+  		<option value="118">118</option>
+  		<option value="123">123</option>
+  		<option value="135">135</option>
+  		<option value="138">138</option>
+  		<option value="152">152</option>
+  		<option value="173">173</option>
+  		
+	</select>
+
+	<label for="kb">Kickback:</label>
+	<select name="kb" id="Kickback">
+  		<option value="kb" selected disabled>"Kickback type" </option>
+  		<option value="G"> Reduced Kickback (Green)</option>
+  		<option value="Y"> Standard (Yellow)</option>
+	
+	<input type="submit" <?php
+// Read the CSV file into an array
+$rows = array_map('str_getcsv', file('desktop/chains.csv'));
+
+// Get the user's selections from the form
+$pitch = $_POST['pitch'];
+$gauge = $_POST['gauge'];
+$links = $_POST['links'];
+$color = $_POST['kb'];
+
+// Search the array for matching rows
+$matches = array();
+foreach ($rows as $row) {
+    if ($row[0] == $pitch && $row[1] == $gauge && $row[2] == $links && $row[3] == $kb) {
+        $matches[] = $row;
+    }
+}
+
+// Display the matching rows on the web page
+foreach ($matches as $match) {
+    echo "<p>" . $match[6] . " - " . $match[8] . "</p>";
+}
+?>
+</div>
+>
+
+
+</main>
